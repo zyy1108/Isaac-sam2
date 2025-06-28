@@ -4,7 +4,6 @@ import numpy as np
 import torch
 import cv2
 import random
-from  img_seg.srv import Segment
 from sensor_msgs.msg import Image, CameraInfo
 from cv_bridge import CvBridge
 from sam2.sam2_image_predictor import SAM2ImagePredictor
@@ -35,7 +34,7 @@ class Segment:
         self.bridge = CvBridge()
         
         #ROS初始化(根据实际的ROS节点信息调整)
-        self.sub_image = rospy.Subscriber('/rgb', Image,self.image)
+        self.sub_image = rospy.Subscriber('/camera/color/image_rect_color', Image,self.image)
         # self.sub_depth = rospy.Subscriber('/camera/depth_registered/sw_registered/image_rect_raw', Image, self.depth)
         # self.sub_cam_info = rospy.Subscriber('/camera/depth_registered/sw_registered/camera_info', CameraInfo, self.cam_info)
         self.mask_pub = rospy.Publisher('/sam2/all_masks', Image, queue_size=10)
@@ -54,7 +53,7 @@ class Segment:
         self.current_depth = self.bridge.imgmsg_to_cv2(msg, desired_encoding="16UC1")
         
     # 创建带标签和随机颜色框的叠加可视化图像
-    def create_labeled_overlay(self, image, masks, alpha=0.3):
+    def label_overlay(self, image, masks, alpha=0.3):
         """
         param image: 原始RGB图像 (H,W,3)
         param mask: 分割掩码 (H,W)
@@ -120,7 +119,7 @@ class Segment:
                     })
                     
                 #发布带标签的可视化结果
-                overlay = self.create_labeled_overlay(cv_image, mask_data_list)
+                overlay = self.label_overlay(cv_image, mask_data_list)
                 overlay_msg = self.bridge.cv2_to_imgmsg(overlay, "rgb8")
                 overlay_msg.header = msg.header
                 self.overlay_pub.publish(overlay_msg)
