@@ -1,0 +1,2 @@
+img_seg
+-DCATKIN_DEVEL_PREFIX=/home/gpu007-905/isaac_vision/devel -DCMAKE_INSTALL_PREFIX=/home/gpu007-905/isaac_vision/install -G Unix Makefiles

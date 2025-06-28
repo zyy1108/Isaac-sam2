@@ -1,0 +1,8 @@
+prefix=/home/gpu007-905/isaac_vision/devel
+
+Name: img_seg
+Description: Description of img_seg
+Version: 0.0.0
+Cflags: -I/home/gpu007-905/isaac_vision/devel/include
+Libs: -L${prefix}/lib 
+Requires: message_runtime cv_bridge rospy sensor_msgs std_msgs
