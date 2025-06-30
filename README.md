@@ -54,14 +54,14 @@ rosrun img_seg segment.py
 Some examples:
 
 #### official:
-
+![official in isaac-sim](https://github.com/zyy1108/Isaac-sam2/blob/main/Examples/office.gif)
 
 
 
 
 
 #### wareroom:
-
+![wareroom in isaac-sim](https://github.com/zyy1108/Isaac-sam2/blob/main/Examples/wareroom.gif)
 
 
 
