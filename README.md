@@ -1,5 +1,6 @@
 # Image segmentation in isaac-sim based on SAM2
-##Contents
+
+## Contents
 - [Installation](#Installation)
 - [Getting started](#Gettingstarted)
     - [chekpoints and yaml](#Downloadthecheckpoints)
